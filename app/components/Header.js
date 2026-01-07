@@ -68,8 +68,8 @@ export default function Header() {
               <span className="text-white font-bold text-xl md:text-2xl">MT</span>
             </div>
             
-            {/* Logo Text */}
-            <div className="flex flex-col relative">
+            {/* Logo Text - Hidden on Mobile */}
+            <div className="hidden md:flex flex-col relative">
               <span className="text-gray-400 text-xs absolute -top-3 md:-top-4 left-0 hidden sm:block">SINCE 2020</span>
               <h1 className="text-xl md:text-3xl font-serif text-white font-bold leading-tight">Mirha Textile</h1>
               <p className="text-gray-400 text-xs md:text-sm">BY Talha Saleem</p>
@@ -157,10 +157,10 @@ export default function Header() {
                     </button>
                   </div>
                 ) : (
-                  /* User is not logged in - Show login icon */
+                  /* User is not logged in - Show login icon (Hidden on Mobile) */
                   <a 
                     href="/login"
-                    className="p-2 text-gray-300 hover:text-white transition-colors"
+                    className="hidden lg:block p-2 text-gray-300 hover:text-white transition-colors"
                     aria-label="Login/Signup"
                   >
                     <svg 
@@ -176,10 +176,10 @@ export default function Header() {
               </>
             )}
             
-            {/* Cart Icon */}
+            {/* Cart Icon - Hidden on Mobile */}
             <a 
               href="/cart"
-              className="p-2 text-gray-300 hover:text-white transition-colors relative"
+              className="hidden lg:block p-2 text-gray-300 hover:text-white transition-colors relative"
               aria-label="Shopping Cart"
             >
               <svg 
@@ -192,10 +192,10 @@ export default function Header() {
               </svg>
             </a>
             
-            {/* Favorites Icon */}
+            {/* Favorites Icon - Hidden on Mobile */}
             <a 
               href="/favorites"
-              className="p-2 text-gray-300 hover:text-white transition-colors relative"
+              className="hidden lg:block p-2 text-gray-300 hover:text-white transition-colors relative"
               aria-label="Favorites"
             >
               <svg 
@@ -243,7 +243,7 @@ export default function Header() {
         {/* Mobile Menu - Slides down when open */}
         <div 
           className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <nav className="flex flex-col gap-4 py-4 border-t border-gray-700">
@@ -278,6 +278,41 @@ export default function Header() {
             >
               Contact
             </a>
+
+            {/* Cart and Favorites in Mobile Menu */}
+            <div className="pt-2 border-t border-gray-700">
+              <a 
+                href="/cart" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-gray-300 font-sans hover:text-white transition-colors py-2 px-4 rounded-lg hover:bg-gray-800"
+              >
+                <svg 
+                  className="w-5 h-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                <span>Shopping Cart</span>
+              </a>
+              
+              <a 
+                href="/favorites" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-gray-300 font-sans hover:text-white transition-colors py-2 px-4 rounded-lg hover:bg-gray-800"
+              >
+                <svg 
+                  className="w-5 h-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <span>Favorites</span>
+              </a>
+            </div>
 
             {/* Mobile User Section */}
             {mounted && user && (
