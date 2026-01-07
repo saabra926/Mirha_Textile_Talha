@@ -10,6 +10,7 @@ export default function SettingsPage() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
